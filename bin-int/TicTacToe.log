@@ -1,0 +1,5 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(453,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Engine.cpp
+C:\Projects\VoiceTicTacToe\TicTacToe\src\Engine\TicTacToe.h(23,2): warning C4309: 'initializing': truncation of constant value
+C:\Projects\VoiceTicTacToe\TicTacToe\src\Engine\TicTacToe.h(24,1): warning C4369: 'TTTSquare::NoSquare':  enumerator value '-1' cannot be represented as 'unsigned char', value is '255'
+  TicTacToe.vcxproj -> C:\Projects\VoiceTicTacToe\bin\TicTacToe\TicTacToe.exe

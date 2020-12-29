@@ -1,0 +1,27 @@
+# This is gitignore file for VoiceChess project
+
+# ignore CMake files
+CMakeCache.txt
+*.cmake
+CMakeFiles/**
+
+# ignore every build output
+.build/**
+bin/**
+lib/**
+
+*.o
+*.obj
+*.lib
+*.exe
+*.dll
+*.pdb
+
+# ignore CMake build output
+*.dir/**
+
+# MSVC ignoring
+.vs/**
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user

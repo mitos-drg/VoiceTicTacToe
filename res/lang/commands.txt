@@ -1,0 +1,60 @@
+place circle in the top left
+circle top left
+circle in the top left
+place circle in the top
+circle top
+circle in the top
+place circle in the top right
+circle top right
+circle in the top right
+place circle in the left
+circle left
+circle in the left
+place circle in the middle
+circle middle
+circle in the middle
+place circle in the center
+circle center
+circle in the center
+place circle in the right
+circle right
+circle in the right
+place circle in the bottom left
+circle bottom left
+circle in the bottom left
+place circle in the bottom
+circle bottom
+circle in the bottom
+place circle in the bottom right
+circle bottom right
+circle in the bottom right
+place cross in the top left
+cross top left
+cross in the top left
+place cross in the top
+cross top
+cross in the top
+place cross in the top right
+cross top right
+cross in the top right
+place cross in the left
+cross left
+cross in the left
+place cross in the middle
+cross middle
+cross in the middle
+place cross in the center
+cross center
+cross in the center
+place cross in the right
+cross right
+cross in the right
+place cross in the bottom left
+cross bottom left
+cross in the bottom left
+place cross in the bottom
+cross bottom
+cross in the bottom
+place cross in the bottom right
+cross bottom right
+cross in the bottom right
