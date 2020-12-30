@@ -36,7 +36,6 @@ set(BUILD_SHARED_LIBS FALSE)
 set(SFML_BUILD_NETWORK FALSE)
 set(SFML_BUILD_AUDIO FALSE)
 add_subdirectory(dep/sfml)
-set_target_properties(sfml-graphics PROPERTIES FOLDER dependencies)
 
 add_subdirectory(dep/sphinxbase)
 set_target_properties(sphinxbase PROPERTIES FOLDER dependencies)
