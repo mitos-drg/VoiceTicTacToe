@@ -8,10 +8,9 @@
 SpeechRecognizer::SpeechRecognizer()
 {
     m_Config = cmd_ln_init(NULL, ps_args(), TRUE,
-        "-hmm", "../res/lang/en-us",
-        "-kws", "../res/lang/commands.kws",
-        //"-lm", "../res/lang2/1074.lm.bin",
-        "-dict", "../res/lang/commands.dict",
+        "-hmm", "./res/lang/en-us",
+        "-kws", "./res/lang/commands.kws",
+        "-dict", "./res/lang/commands.dict",
         "-bestpath", "1",
         "-logfn", "null",
         NULL);

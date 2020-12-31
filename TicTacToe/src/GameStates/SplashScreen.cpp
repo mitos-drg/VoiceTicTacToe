@@ -6,7 +6,7 @@
 SplashScreen::SplashScreen(float duration)
 	: m_duration(duration)
 {
-	m_texture.loadFromFile("../res/textures/splash.jpg");
+	m_texture.loadFromFile("./res/textures/splash.jpg");
 
 	m_screen.setPosition({ 0, 0 });
 	m_screen.setSize({ 800, 450 });

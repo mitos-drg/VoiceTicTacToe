@@ -69,17 +69,17 @@ MainMenu::MainMenu()
 
 	m_board = new TTTBoard();
 	m_board->fields[0] = TTTPlayer::Circle;
-	m_board->fields[1] = TTTPlayer::Circle;
-	m_board->fields[2] = TTTPlayer::Circle;
+	m_board->fields[1] = TTTPlayer::Cross;
+	m_board->fields[2] = TTTPlayer::Cross;
 
 	m_board->fields[3] = TTTPlayer::Cross;
-	m_board->fields[4] = TTTPlayer::Cross;
-	m_board->fields[5] = TTTPlayer::Cross;
+	m_board->fields[4] = TTTPlayer::Circle;
+	m_board->fields[5] = TTTPlayer::Circle;
 
 	m_board->fields[6] = TTTPlayer::Circle;
 	m_board->fields[7] = TTTPlayer::Cross;
-	m_board->fields[8] = TTTPlayer::Circle;
-	m_board->circles = 0b111;
+	m_board->fields[8] = TTTPlayer::Cross;
+
 	m_guiElements.push_back(new BoardDisplay(25, 25, 400, 400, m_board));
 }
 

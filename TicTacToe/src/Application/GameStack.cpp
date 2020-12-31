@@ -19,16 +19,16 @@ void GameStack::Init()
 
 	// Create and load all global resources
 	GlobalResources::Font = new sf::Font();
-	GlobalResources::Font->loadFromFile("../res/consola.ttf");
+	GlobalResources::Font->loadFromFile("./res/LUCON.ttf");
 
 	GlobalResources::CircleTexture = new sf::Texture();
-	GlobalResources::CircleTexture->loadFromFile("../res/textures/circle.png");
+	GlobalResources::CircleTexture->loadFromFile("./res/textures/circle.png");
 
 	GlobalResources::CrossTexture = new sf::Texture();
-	GlobalResources::CrossTexture->loadFromFile("../res/textures/cross.png");
+	GlobalResources::CrossTexture->loadFromFile("./res/textures/cross.png");
 
 	GlobalResources::BoardTexture = new sf::Texture();
-	GlobalResources::BoardTexture->loadFromFile("../res/textures/board.png");
+	GlobalResources::BoardTexture->loadFromFile("./res/textures/board.png");
 
 	// Create and add SplashScreen Layer to start application
 	PushState(new SplashScreen(1.0f));

@@ -13,9 +13,13 @@ lib/**
 *.o
 *.obj
 *.lib
+*.so
 *.exe
 *.dll
 *.pdb
+
+# ignore distribution specific files
+.dist/**
 
 # ignore CMake build output
 *.dir/**

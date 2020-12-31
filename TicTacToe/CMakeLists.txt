@@ -54,4 +54,4 @@ target_compile_definitions(tictactoe PRIVATE _CRT_SECURE_NO_WARNINGS)
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${VTTT_SOURCE})
 
 # Link any required libraries
-target_link_libraries(tictactoe sfml-graphics sphinxbase pocketsphinx)
+target_link_libraries(tictactoe sfml-graphics sfml-main sphinxbase pocketsphinx)
