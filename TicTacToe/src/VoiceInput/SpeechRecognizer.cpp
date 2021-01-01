@@ -77,6 +77,8 @@ void SpeechRecognizer::ProcessSpeech(int deltaTime)
             m_speechCompleted = true;
             if (m_hypothesis)
                 strcpy(m_result, m_hypothesis);
+            else
+                strcpy(m_result, "error_value");
 
             ps_start_utt(m_Decoder);
             m_uttStarted = false;
