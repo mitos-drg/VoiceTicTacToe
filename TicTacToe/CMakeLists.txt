@@ -44,7 +44,8 @@ set(VTTT_SOURCE
 add_executable(tictactoe ${VTTT_SOURCE})
 
 # Include executable headers
-target_include_directories(tictactoe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+# FIXME: Change paths to not be hard-coded
+target_include_directories(tictactoe PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src PRIVATE /usr/local/include/sphinxbase PRIVATE /usr/local/include/pocketsphinx)
 
 # Set some project level preprocesor definitions
 target_compile_definitions(tictactoe PRIVATE SFML_STATIC)
@@ -54,4 +55,7 @@ target_compile_definitions(tictactoe PRIVATE _CRT_SECURE_NO_WARNINGS)
 source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${VTTT_SOURCE})
 
 # Link any required libraries
-target_link_libraries(tictactoe sfml-graphics sfml-main sphinxbase pocketsphinx)
+target_link_libraries(tictactoe sfml-graphics ${SPHINXBASE} ${SPHINXAD} ${POCKETSPHINX})
+if (WIN32)
+	target_link_libraries(tictactoe sfml-main)
+endif()

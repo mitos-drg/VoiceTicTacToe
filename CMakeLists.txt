@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.1)
 
 # Start the VoiceChess project
-project(VoiceTicTacToe CXX)
+project(VoiceTicTacToe CXX C)
 
 # Global project settings
 
@@ -37,11 +37,28 @@ set(SFML_BUILD_NETWORK FALSE)
 set(SFML_BUILD_AUDIO FALSE)
 add_subdirectory(dep/sfml)
 
-add_subdirectory(dep/sphinxbase)
-set_target_properties(sphinxbase PROPERTIES FOLDER dependencies)
-add_subdirectory(dep/pocketsphinx)
-set_target_properties(pocketsphinx PROPERTIES FOLDER dependencies)
+if (WIN32)
+    add_subdirectory(dep/sphinxbase)
+    set_target_properties(sphinxbase PROPERTIES FOLDER dependencies)
+    set(SPHINXBASE sphinxbase)
+    add_subdirectory(dep/pocketsphinx)
+    set_target_properties(pocketsphinx PROPERTIES FOLDER dependencies)
+    set(POCKETSPHINX pocketsphinx)
+ELSE()
+    find_library(SPHINXBASE sphinxbase REQUIRED)
+    find_path(SPHINXBASEINCL sphinxbase.h)
+    find_library(SPHINXAD sphinxad REQUIRED)
+    find_library(POCKETSPHINX pocketsphinx REQUIRED)
+    find_path(POCKETSPHINXINCL pocketsphinx.h)
 
+    message(STATUS "SPHINXBASE path: ${SPHINXBASE}")
+    message(STATUS "SPHINXBASE path: ${SPHINXBASEINCL}")
+    message(STATUS "SPHINXAD path: ${SPHINXAD}")
+    message(STATUS "POCKETSPHINX path: ${POCKETSPHINX}")
+    message(STATUS "POCKETSPHINX path: ${POCKETSPHINXINCL}")
+ENDIF()
 
 # Add project main executable
 add_subdirectory(TicTacToe)
+
+# /usr/local/include/pocketsphinx/pocketsphinx_export.h

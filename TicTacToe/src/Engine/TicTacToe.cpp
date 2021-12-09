@@ -32,7 +32,8 @@ uint8_t fieldWeight[9] =
 uint8_t bitTable[16] =
 {
 	/*	0, 1, 8, 2, 6,  9, 3, 11, 15, 7, 5, 10, 14, 4, 13, 12 */
-		0, 1, 8, 2, 6, -1, 3, -1, -1, 7, 5, -1, -1, 4, -1, -1
+		0, 1, 8, 2, 6, (uint8_t)-1, 3, (uint8_t)-1, (uint8_t)-1, 7, 5,
+        (uint8_t)-1, (uint8_t)-1, 4, (uint8_t)-1, (uint8_t)-1
 };
 
 TTTBoard& TTTBoard::operator+= (const TTTMove& move)

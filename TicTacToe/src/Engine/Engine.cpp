@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <algorithm>
+#include <cstdio>
 
 TTTEngine::TTTEngine(TTTPlayer startingPlayer)
 	: m_board(), m_player(startingPlayer)

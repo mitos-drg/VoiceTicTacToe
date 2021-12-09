@@ -7,8 +7,10 @@ CMakeFiles/**
 
 # ignore every build output
 .build/**
+build/**
 bin/**
 lib/**
+libs/**
 
 *.o
 *.obj
@@ -29,3 +31,8 @@ lib/**
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+
+# CLion ignoring
+.idea/**
+cmake-build-debug/**
+cmake-build-release/**

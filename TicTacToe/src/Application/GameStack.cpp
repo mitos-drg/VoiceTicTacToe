@@ -19,7 +19,7 @@ void GameStack::Init()
 
 	// Create and load all global resources
 	GlobalResources::Font = new sf::Font();
-	GlobalResources::Font->loadFromFile("./res/LUCON.ttf");
+	GlobalResources::Font->loadFromFile("./res/lucon.ttf");
 
 	GlobalResources::CircleTexture = new sf::Texture();
 	GlobalResources::CircleTexture->loadFromFile("./res/textures/circle.png");

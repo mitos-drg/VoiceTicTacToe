@@ -89,9 +89,11 @@ extern "C" {
 
 /* Define some things for VisualDSP++ */
 #if defined(__ADSPBLACKFIN__) && !defined(__GNUC__)
+
 # ifndef HAVE_LONG_LONG
 #  define HAVE_LONG_LONG
 # endif
+
 # ifndef ssize_t
 typedef signed int ssize_t;
 # endif
@@ -100,6 +102,9 @@ typedef signed int ssize_t;
 #else /* Not VisualDSP++ */
 # define __BIGSTACKVARIABLE__
 #endif
+
+#define HAVE_LONG_LONG
+#define SIZEOF_LONG_LONG 8
 
 /**
  * Union of basic types.
@@ -129,8 +134,8 @@ typedef unsigned __int64 uint64;
 typedef long long	   int64;
 typedef unsigned long long uint64;
 #else /* !HAVE_LONG_LONG && SIZEOF_LONG_LONG == 8 */
-typedef double          int64;
-typedef double          uint64;
+//typedef double          int64;
+//typedef double          uint64;
 #endif /* !HAVE_LONG_LONG && SIZEOF_LONG_LONG == 8 */
 
 #ifndef TRUE

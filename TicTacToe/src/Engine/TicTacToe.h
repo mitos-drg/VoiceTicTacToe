@@ -30,7 +30,7 @@ enum class TTTSquare : uint8_t
 	TopLeft = 0,	Top = 1,	TopRight = 2,
 	Left = 3,		Centre = 4,	Right = 5,
 	BottomLeft = 6,	Bottom = 7,	BottomRight = 8,
-	NoSquare = -1
+	NoSquare = (uint8_t)-1
 };
 
 /* 
