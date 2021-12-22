@@ -7,6 +7,8 @@
 // Libraries headers includes
 #include <SFML/Window/Event.hpp>
 
+#include <cstdio>
+
 // Project headers includes
 #include "Application/GameStack.h"
 #include "Application/State.h"
@@ -28,6 +30,7 @@ int main(int argc, char* argv[])
 	while (GameStack::GetWindow()->isOpen())
 	{
 		deltaTime = clock.restart();
+        printf("Last frame time: %dms\n", deltaTime.asMilliseconds());
 		while (GameStack::GetWindow()->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)

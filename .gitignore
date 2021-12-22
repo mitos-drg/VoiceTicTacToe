@@ -22,6 +22,7 @@ libs/**
 
 # ignore distribution specific files
 .dist/**
+dist/**
 
 # ignore CMake build output
 *.dir/**

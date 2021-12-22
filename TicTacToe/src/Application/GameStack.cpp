@@ -19,6 +19,7 @@ void GameStack::Init()
 
 	// Create and load all global resources
 	GlobalResources::Font = new sf::Font();
+    //std::cout << "We are at: " << std::filesystem::current_path();
 	GlobalResources::Font->loadFromFile("./res/lucon.ttf");
 
 	GlobalResources::CircleTexture = new sf::Texture();
