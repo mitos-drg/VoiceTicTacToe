@@ -25,12 +25,12 @@ int main(int argc, char* argv[])
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	GameStack::GetSpeechRecognizer()->StartListening();
+	GameStack::GetSpeechRecognizer()->StartListeningAsync();
 
 	while (GameStack::GetWindow()->isOpen())
 	{
 		deltaTime = clock.restart();
-        printf("Last frame time: %dms\n", deltaTime.asMilliseconds());
+        //printf("Last frame time: %dms\n", deltaTime.asMilliseconds());
 		while (GameStack::GetWindow()->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
 
 		GameStack::GetWindow()->clear({ 0x1f, 0x1f, 0x1f, 0xff });
 
-		GameStack::GetSpeechRecognizer()->ProcessSpeech(deltaTime.asMilliseconds());
+		//GameStack::GetSpeechRecognizer()->ProcessSpeech(deltaTime.asMilliseconds());
 
 		state = GameStack::GetState();
 		state->Update(deltaTime.asSeconds());
@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
 		GameStack::GetWindow()->display();
 	}
 
+    GameStack::GetSpeechRecognizer()->StopListeningAsync();
 	GameStack::Clean();
 
 	return 0;

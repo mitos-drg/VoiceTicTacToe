@@ -3,17 +3,19 @@
 #include <pocketsphinx/pocketsphinx.h>
 #include <sphinxbase/ad.h>
 
+#include <chrono>
 #include <cstdio>
+#include <thread>
 
 SpeechRecognizer::SpeechRecognizer()
 {
     m_Config = cmd_ln_init(NULL, ps_args(), TRUE,
-        "-hmm", "./res/lang/en-us",
-        "-kws", "./res/lang/commands.kws",
-        "-dict", "./res/lang/commands.dict",
-        "-bestpath", "1",
-        "-logfn", "null",
-        NULL);
+                           "-hmm", "./res/lang/en-us",
+                           "-kws", "./res/lang/commands.kws",
+                           "-dict", "./res/lang/commands.dict",
+                           "-bestpath", "1",
+                           "-logfn", "null",
+                           NULL);
 
     ps_default_search_args(m_Config);
     m_Decoder = ps_init(m_Config);
@@ -46,10 +48,22 @@ void SpeechRecognizer::StartListening()
     m_result = new char[2048];
 }
 
+void SpeechRecognizer::StartListeningAsync()
+{
+    m_isRecognizing = true;
+    m_result = new char[2048];
+    m_thread = std::thread(&SpeechRecognizer::ProcessSpeechAsync, this);
+}
+
 void SpeechRecognizer::StopListening()
 {
     ad_stop_rec(m_AudioDevice);
     delete m_result;
+}
+
+void SpeechRecognizer::StopListeningAsync()
+{
+    m_isRecognizing = false;
 }
 
 void SpeechRecognizer::ProcessSpeech(int deltaTime)
@@ -65,20 +79,22 @@ void SpeechRecognizer::ProcessSpeech(int deltaTime)
         ps_process_raw(m_Decoder, m_AudioBuffer, m_bufferRead, FALSE, FALSE);
 
         m_inSpeech = ps_get_in_speech(m_Decoder);
-        if (m_inSpeech && !m_uttStarted) {
+        if (m_inSpeech && !m_uttStarted)
+        {
             m_uttStarted = true;
         }
 
-        if (!m_inSpeech && m_uttStarted) {
+        if (!m_inSpeech && m_uttStarted)
+        {
             /* speech -> silence transition, time to start new utterance  */
             ps_end_utt(m_Decoder);
             m_hypothesis = ps_get_hyp(m_Decoder, NULL);
-            
-            m_speechCompleted = true;
+
             if (m_hypothesis)
                 strcpy(m_result, m_hypothesis);
             else
                 strcpy(m_result, "error_value");
+            m_speechCompleted = true;
 
             ps_start_utt(m_Decoder);
             m_uttStarted = false;
@@ -87,9 +103,54 @@ void SpeechRecognizer::ProcessSpeech(int deltaTime)
     }
 }
 
+void SpeechRecognizer::ProcessSpeechAsync()
+{
+    using namespace std::chrono_literals;
+    ad_start_rec(m_AudioDevice);
+
+    ps_start_utt(m_Decoder);
+    m_uttStarted = false;
+    m_inSpeech = false;
+
+    while (m_isRecognizing)
+    {
+        m_bufferRead = ad_read(m_AudioDevice, m_AudioBuffer, 2048);
+
+        ps_process_raw(m_Decoder, m_AudioBuffer, m_bufferRead, FALSE, FALSE);
+
+        m_inSpeech = ps_get_in_speech(m_Decoder);
+        if (m_inSpeech && !m_uttStarted)
+        {
+            m_uttStarted = true;
+        }
+
+        if (!m_inSpeech && m_uttStarted)
+        {
+            /* speech -> silence transition, time to start new utterance  */
+            ps_end_utt(m_Decoder);
+            m_hypothesis = ps_get_hyp(m_Decoder, NULL);
+
+            if (m_hypothesis)
+                strcpy(m_result, m_hypothesis);
+            else
+                strcpy(m_result, "error_value");
+            m_speechCompleted = true;
+
+            ps_start_utt(m_Decoder);
+            m_uttStarted = false;
+        }
+
+        std::this_thread::sleep_for(100ms);
+    }
+
+    ad_stop_rec(m_AudioDevice);
+    delete m_result;
+}
+
 char* SpeechRecognizer::GetHypothesis(bool& speechReturned)
 {
     speechReturned = m_speechCompleted && m_result;
+    m_speechCompleted = false;
 
     if (speechReturned)
         printf("%s\n", m_result);

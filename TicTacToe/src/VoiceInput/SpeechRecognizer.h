@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <string>
+#include <thread>
 
 /*
 	Speech recognizer abstracted from CMU Pocketsphinx library.
@@ -19,13 +20,21 @@ public:
 
 	/* Start recognition */
 	void StartListening();
+    /* Start asynchronous recognition */
+	void StartListeningAsync();
 	/* Stop recognition */
 	void StopListening();
+    /* Stop asynchronous recognition */
+	void StopListeningAsync();
 
 	/*
 		Speech processing function, the recognitions takes place here.
 	*/
 	void ProcessSpeech(int deltaTime);
+    /*
+		Asynchronous speech processing function, the recognitions takes place here.
+	*/
+	void ProcessSpeechAsync();
 	/*
 		Returns last recognized phrase.
 		speechReturned - flag indicating whether in current frame new recognition result appeared.
@@ -35,6 +44,8 @@ public:
 private:
 	ps_decoder_t* m_Decoder;
 	cmd_ln_t* m_Config;
+
+    std::thread m_thread;
 
 	ad_rec_t* m_AudioDevice;
 
@@ -47,6 +58,7 @@ private:
 	int m_bufferRead;
 
 	bool m_speechCompleted = false;
+    bool m_isRecognizing = false;
 
 	int m_nextTime;
 	int m_currentTime;
