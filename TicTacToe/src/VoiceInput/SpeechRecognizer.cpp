@@ -14,7 +14,6 @@ SpeechRecognizer::SpeechRecognizer()
                            "-kws", "./res/lang/commands.kws",
                            "-dict", "./res/lang/commands.dict",
                            "-bestpath", "1",
-                           "-logfn", "null",
                            NULL);
 
     ps_default_search_args(m_Config);
